@@ -29,7 +29,7 @@
 .terminal-typewriter {
   overflow: hidden;
   white-space: nowrap;
-  border-right: 2px solid var(--accent);
+  border-right: 2px solid var(--brand);
   animation: cursor-blink 1.06s step-end infinite;
 }
 

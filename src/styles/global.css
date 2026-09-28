@@ -1,16 +1,9 @@
 @import './tokens.css';
 
 @font-face {
-  font-family: 'Space Grotesk';
-  src: url('/fonts/SpaceGrotesk/SpaceGrotesk-Variable.ttf') format('truetype');
-  font-weight: 400 700;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Inter';
   src: url('/fonts/Inter/Inter-Variable.woff2') format('woff2');
-  font-weight: 400 700;
+  font-weight: 100 900;
   font-display: swap;
 }
 
@@ -70,7 +63,7 @@ body {
 }
 
 a {
-  color: var(--accent);
+  color: var(--brand);
   text-decoration: none;
 }
 
@@ -105,7 +98,7 @@ button:focus-visible,
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-head);
+  font-family: var(--font-sans);
   font-weight: 600;
   line-height: 1.2;
   color: var(--fg);
@@ -118,12 +111,12 @@ h4 { font-size: clamp(1rem, 2vw, 1rem); }
 
 p {
   margin: var(--space-2) 0;
-  color: oklch(0.78 0 0);
+  color: var(--fg-muted);
 }
 
 .lead {
   font-size: 1.05rem;
-  color: oklch(0.84 0 0);
+  color: var(--fg);
 }
 
 .muted {
@@ -136,7 +129,7 @@ code {
   background: var(--bg-hover);
   padding: 1px 6px;
   border-radius: var(--radius-sm);
-  color: oklch(0.85 0.1 85);
+  color: var(--brand);
 }
 
 img {
@@ -152,7 +145,7 @@ ul.list {
 
 ul.list li {
   margin: var(--space-1) 0;
-  color: oklch(0.78 0 0);
+  color: var(--fg-muted);
 }
 
 .grid {
@@ -183,9 +176,9 @@ ul.list li {
   border: 1px solid var(--border);
 }
 
-.badge.ok { color: var(--success); border-color: oklch(0.35 0.15 145); background: oklch(0.2 0.1 145); }
-.badge.bad { color: var(--error); border-color: oklch(0.35 0.15 25); background: oklch(0.2 0.1 25); }
-.badge.pending { color: var(--warning); border-color: oklch(0.4 0.1 85); background: oklch(0.2 0.08 85); }
+.badge.ok { color: var(--success); border-color: color-mix(in srgb, var(--success) 40%, transparent); background: color-mix(in srgb, var(--success) 12%, transparent); }
+.badge.bad { color: var(--error); border-color: color-mix(in srgb, var(--error) 40%, transparent); background: color-mix(in srgb, var(--error) 12%, transparent); }
+.badge.pending { color: var(--warning); border-color: color-mix(in srgb, var(--warning) 40%, transparent); background: color-mix(in srgb, var(--warning) 12%, transparent); }
 .badge.neutral { color: var(--fg-muted); }
 
 .bar {
@@ -198,16 +191,16 @@ ul.list li {
 .bar > span {
   display: block;
   height: 100%;
-  background: var(--accent);
+  background: var(--brand);
   border-radius: var(--radius-full);
   transition: width var(--duration-slow) var(--ease-out);
 }
 
 .stat {
-  font-family: var(--font-head);
+  font-family: var(--font-mono);
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 700;
-  color: var(--accent);
+  color: var(--brand);
   line-height: 1;
 }
 
@@ -262,7 +255,7 @@ tr:hover td {
   flex: none;
 }
 
-.dot.current { background: var(--warning); box-shadow: 0 0 0 4px oklch(0.78 0.16 85 / 0.15); }
+.dot.current { background: var(--warning); box-shadow: 0 0 0 4px color-mix(in srgb, var(--warning) 15%, transparent); }
 .dot.pending { background: var(--border); }
 .dot.passed { background: var(--success); }
 
@@ -296,7 +289,7 @@ a.card-link {
 }
 
 a.card-link:hover {
-  border-color: var(--accent);
+  border-color: var(--brand);
   text-decoration: none;
 }
 

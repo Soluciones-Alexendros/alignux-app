@@ -20,13 +20,13 @@ export class TerminalTypewriter {
   private init() {
     this.element.style.overflow = 'hidden';
     this.element.style.whiteSpace = 'nowrap';
-    this.element.style.borderRight = '2px solid var(--accent)';
+    this.element.style.borderRight = '2px solid var(--brand)';
     this.startBlink();
   }
 
   private startBlink() {
     this.blinkInterval = window.setInterval(() => {
-      this.element.style.borderRightColor = this.element.style.borderRightColor === 'transparent' ? 'var(--accent)' : 'transparent';
+      this.element.style.borderRightColor = this.element.style.borderRightColor === 'transparent' ? 'var(--brand)' : 'transparent';
     }, this.cursorBlink);
   }
 
