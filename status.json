@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-09-28T18:15:03Z",
+  "data_fresh": true,
+  "last_good_at": "2026-09-28T18:06:36Z",
+  "phase_current": "M0",
+  "gates": [
+    {
+      "id": "G0",
+      "state": "current"
+    },
+    {
+      "id": "G1",
+      "state": "pending"
+    },
+    {
+      "id": "G2",
+      "state": "pending"
+    },
+    {
+      "id": "G3",
+      "state": "pending"
+    },
+    {
+      "id": "G4",
+      "state": "pending"
+    },
+    {
+      "id": "G5",
+      "state": "pending"
+    }
+  ],
+  "tasks": {
+    "total": 0,
+    "must": 0,
+    "should": 0,
+    "could": 0,
+    "by_phase": {
+      "M0": 0,
+      "M1": 0,
+      "M2": 0,
+      "M3": 0,
+      "M4": 0,
+      "M5": 0,
+      "S": 0,
+      "V": 0,
+      "CI": 0,
+      "P": 0
+    }
+  },
+  "ci": {
+    "main": {
+      "status": "failure",
+      "last_run": "2026-09-28T18:10:13Z",
+      "url": "https://github.com/Soluciones-Alexendros/alignux/actions/runs/36463188444"
+    },
+    "nightly": null,
+    "last_run": "2026-09-28T18:10:13Z"
+  },
+  "milestones": [
+    {
+      "id": "M0",
+      "due": "2026-12-31",
+      "open": 0,
+      "closed": 0
+    },
+    {
+      "id": "M1",
+      "due": "2027-03-31",
+      "open": 0,
+      "closed": 0
+    },
+    {
+      "id": "M2",
+      "due": "2027-06-30",
+      "open": 0,
+      "closed": 0
+    },
+    {
+      "id": "M3",
+      "due": "2027-09-30",
+      "open": 0,
+      "closed": 0
+    },
+    {
+      "id": "M4",
+      "due": "2027-12-31",
+      "open": 0,
+      "closed": 0
+    },
+    {
+      "id": "M5",
+      "due": "2028-12-31",
+      "open": 0,
+      "closed": 0
+    }
+  ],
+  "risks_active": 11,
+  "pin": {
+    "sel4": "16.0.0",
+    "microkit": "2.3.1",
+    "rust_sel4": "5.0.0"
+  }
+}
