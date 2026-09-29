@@ -10,6 +10,7 @@ const { title, description } = Astro.props;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'none'">
   <meta name="description" content={description}>
   <meta name="theme-color" content="#f6f8fc" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0a1224" media="(prefers-color-scheme: dark)">
@@ -27,8 +28,11 @@ const { title, description } = Astro.props;
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
   <slot />
-  <script type="module" src="/scripts/theme.js"></script>
+  <script>
+    import '../scripts/theme';
+  </script>
 </body>
 </html>
 
