@@ -12,8 +12,12 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(
   children: (Node | string)[] = []
 ): HTMLElementTagNameMap[K] {
   const el = document.createElement(tag);
-  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
-  children.forEach(c => el.append(c instanceof Node ? c : document.createTextNode(c)));
+  Object.entries(attrs).forEach(([k, v]) => {
+    el.setAttribute(k, v);
+  });
+  children.forEach((c) => {
+    el.append(c instanceof Node ? c : document.createTextNode(c));
+  });
   return el;
 }
 
@@ -34,12 +38,13 @@ export function toggleClass(el: Element, className: string, force?: boolean): bo
 }
 
 export function on<K extends keyof HTMLElementEventMap>(
-  el: Element | null,
+  el: HTMLElement | null,
   type: K,
   listener: (ev: HTMLElementEventMap[K]) => void,
   options?: boolean | AddEventListenerOptions
 ): () => void {
   if (!el) return () => {};
-  el.addEventListener(type, listener, options);
-  return () => el.removeEventListener(type, listener, options);
+  const handler = listener as EventListener;
+  el.addEventListener(type, handler, options);
+  return () => el.removeEventListener(type, handler, options);
 }

@@ -3,13 +3,16 @@ export class TerminalTypewriter {
   private speed: number;
   private cursorBlink: number;
   private onComplete?: () => void;
-  private currentText: string = '';
-  private targetText: string = '';
-  private index: number = 0;
-  private rafId: number | null = null;
+  private currentText = '';
+  private targetText = '';
+  private index = 0;
+  private timerId: number | null = null;
   private blinkInterval: number | null = null;
 
-  constructor(element: HTMLElement, options: { speed?: number; cursorBlink?: number; onComplete?: () => void } = {}) {
+  constructor(
+    element: HTMLElement,
+    options: { speed?: number; cursorBlink?: number; onComplete?: () => void } = {}
+  ) {
     this.element = element;
     this.speed = options.speed ?? 30;
     this.cursorBlink = options.cursorBlink ?? 530;
@@ -17,20 +20,21 @@ export class TerminalTypewriter {
     this.init();
   }
 
-  private init() {
+  private init(): void {
     this.element.style.overflow = 'hidden';
     this.element.style.whiteSpace = 'nowrap';
     this.element.style.borderRight = '2px solid var(--brand)';
     this.startBlink();
   }
 
-  private startBlink() {
+  private startBlink(): void {
     this.blinkInterval = window.setInterval(() => {
-      this.element.style.borderRightColor = this.element.style.borderRightColor === 'transparent' ? 'var(--brand)' : 'transparent';
+      this.element.style.borderRightColor =
+        this.element.style.borderRightColor === 'transparent' ? 'var(--brand)' : 'transparent';
     }, this.cursorBlink);
   }
 
-  private stopBlink() {
+  private stopBlink(): void {
     if (this.blinkInterval) {
       clearInterval(this.blinkInterval);
       this.blinkInterval = null;
@@ -38,7 +42,7 @@ export class TerminalTypewriter {
     this.element.style.borderRight = 'none';
   }
 
-  type(text: string) {
+  type(text: string): void {
     this.targetText = text;
     this.currentText = '';
     this.index = 0;
@@ -47,17 +51,17 @@ export class TerminalTypewriter {
     this.tick();
   }
 
-  private tick() {
+  private tick(): void {
     if (this.index < this.targetText.length) {
       this.currentText += this.targetText[this.index++];
       this.element.textContent = this.currentText;
-      this.rafId = requestAnimationFrame(() => this.tick());
+      this.timerId = window.setTimeout(() => this.tick(), this.speed);
     } else {
       this.finish();
     }
   }
 
-  private finish() {
+  private finish(): void {
     this.element.classList.remove('typing');
     this.element.classList.add('done');
     this.stopBlink();
@@ -65,22 +69,18 @@ export class TerminalTypewriter {
     this.onComplete?.();
   }
 
-  stop() {
-    if (this.rafId) {
-      cancelAnimationFrame(this.rafId);
-      this.rafId = null;
+  stop(): void {
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+      this.timerId = null;
     }
     this.stopBlink();
   }
 }
 
-export function initTypewriters() {
-  const elements = document.querySelectorAll<HTMLElement>('[data-typewriter]');
-  elements.forEach(el => {
+export function initTypewriters(selector = '.terminal-typewriter:not(.done)'): void {
+  document.querySelectorAll<HTMLElement>(selector).forEach((el) => {
     const text = el.textContent || '';
-    const speed = parseInt(el.dataset.typewriterSpeed || '30', 10);
-    const tw = new TerminalTypewriter(el, { speed });
-    el.dataset.typewriterInit = 'true';
-    tw.type(text);
+    new TerminalTypewriter(el, { speed: 30 }).type(text);
   });
 }

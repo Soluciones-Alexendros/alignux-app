@@ -8,7 +8,7 @@ import ValidacionPanel from './ValidacionPanel.astro';
 import RiesgosPanel from './RiesgosPanel.astro';
 import FuentesPanel from './FuentesPanel.astro';
 ---
-<main class="wrap">
+<main class="wrap" id="main-content">
   <h1 class="sr-only">ALIGNUX — Estado del proyecto</h1>
   <div id="aviso" class="banner" hidden></div>
 
@@ -22,7 +22,9 @@ import FuentesPanel from './FuentesPanel.astro';
   <FuentesPanel  />
 </main>
 
-<script type="module">
-  import { initPanels } from '/scripts/tabs.js';
+<script>
+  import { initPanels } from '../../scripts/tabs';
+  import '../../scripts/scroll-reveal';
+  import '../../scripts/status-loader';
   initPanels();
 </script>
